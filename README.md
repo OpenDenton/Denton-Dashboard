@@ -55,6 +55,8 @@ The number of parameter maps must match the number of layers (featuretypes) incl
 
 ### Sheetsu API
 
+View the [Sheetsu API docs (beta)](https://sheetsu.com/docs/beta).
+
 Dataset | API URL | Description
 ------- | ------- | ---------------
 Community Facilities | [https://sheetsu.com/apis/2705ee3b](https://sheetsu.com/apis/2705ee3b) | A list of facilities around town.
