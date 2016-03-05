@@ -1,25 +1,37 @@
-$(function () { 
+function violations (data) { 
     $('#demo').highcharts({
         chart: {
-            type: 'bar'
+            type: 'line'
         },
         title: {
-            text: 'Fruit Consumption'
+            text: 'Total Code Violations'
         },
         xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
+            categories: ['Date']
         },
         yAxis: {
             title: {
-                text: 'Fruit eaten'
+                text: 'Code Violations'
             }
         },
         series: [{
             name: 'Jane',
-            data: [1, 0, 4]
+            data: [1, 5, 4]
         }, {
             name: 'John',
             data: [5, 7, 3]
         }]
     });
 });
+
+$(document).ready(function() {
+ $.ajax({
+    url: 'https://sheetsu.com/apis/v1.0/41293eb6/?fields=Year,Month,TotalViolations',
+    type: 'GET',
+    async: true,
+    dataType: "json",
+    success: function (data) {
+        violations(data);
+    }
+  });
+ });
