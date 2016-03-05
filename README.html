@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<p><a href="https://waffle.io/OpenDenton/Denton-Dashboard"><img src="https://badge.waffle.io/OpenDenton/Denton-Dashboard.png?label=ready&title=Ready" alt="Stories in Ready" /></a></p>
+
+<h1 id="denton-dashboard">Denton-Dashboard</h1>
+
+<p>Static dashboard for open data in Denton.</p>
+
+<ul>
+<li><a href="#geo-server">Geo Server</a></li>
+<li><a href="#parameter-breakdown">Geo Parameters</a></li>
+<li><a href="#geo-server">SQL View Parameters</a></li>
+<li><a href="#sheetsu-api">Sheetsu API</a></li>
+</ul>
+
+<h2 id="projectresources">Project Resources</h2>
+
+<h3 id="ahrefhttp:docs.geoserver.orgstableenuserdatadatabasesqlview.htmltarget_blankgeoservera"><a href="http://docs.geoserver.org/stable/en/user/data/database/sqlview.html" target="_blank">Geo Server</a></h3>
+
+<p>A geo server is being setup to access a postgresql database. Here&#8217;s a test URL:</p>
+
+<p><a href="http://gis01.cloudapp.net:8080/geoserver/Private/wms?service=WMS&version=1.1.0&request=GetMap&layers=Private:parcel_unt_data&styles=&bbox=2374140.5,7119699.0,2388426.5,7128551.5&width=768&height=475&srs=EPSG:2276&format=image%2Fjpeg" target="_blank">http://gis01.cloudapp.net:8080/geoserver/Private/wms?service=WMS&amp;version=1.1.0&amp;request=GetMap&amp;layers=Private:parcel_unt_data&amp;styles=&amp;bbox=2374140.5,7119699.0,2388426.5,7128551.5&amp;width=768&amp;height=475&amp;srs=EPSG:2276&amp;format=image%2Fjpeg</a></p>
+
+<h3 id="parameterbreakdown">Parameter Breakdown</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Key</th>
+	<th style="text-align:left;">Value</th>
+	<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>service</strong></td>
+	<td style="text-align:left;"><code>WMS</code></td>
+	<td style="text-align:left;">N/A</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>version</strong></td>
+	<td style="text-align:left;"><code>1.1.0</code></td>
+	<td style="text-align:left;">Assumed version of the Geo Server</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>request</strong></td>
+	<td style="text-align:left;"><code>GetMap</code></td>
+	<td style="text-align:left;">Type of data being returned</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>layers</strong></td>
+	<td style="text-align:left;"><code>Private:parcel_unt_data</code></td>
+	<td style="text-align:left;">Specific to the data hosted on the UNT Geo server.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>styles</strong></td>
+	<td style="text-align:left;"><code>bbox=2374140.5,7119699.0,2388426.5,7128551.5</code></td>
+	<td style="text-align:left;">¯\_(ツ)_/¯</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>width</strong></td>
+	<td style="text-align:left;"><code>768</code></td>
+	<td style="text-align:left;">Width of image in px</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>height</strong></td>
+	<td style="text-align:left;"><code>475</code></td>
+	<td style="text-align:left;">Height of image in px</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>srs</strong></td>
+	<td style="text-align:left;"><code>EPSG:2276</code></td>
+	<td style="text-align:left;">¯\_(ツ)_/¯</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>format</strong></td>
+	<td style="text-align:left;"><code>image%2Fjpeg</code></td>
+	<td style="text-align:left;">Format of data, HTML encoded.</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="sqlviewparameters">SQL View Parameters</h4>
+
+<p>The SQL view parameters are specified by adding the viewparams parameter to the WMS GetMap or the WFS GetFeature request. The viewparams argument is a list of key:value pairs, separated by semicolons:</p>
+
+<p><code>viewparams=p1:v1;p2:v2;...</code></p>
+
+<p>If the values contain semicolons or commas these must be escaped with a backslash (e.g. <code>\,</code> and <code>\;</code>).</p>
+
+<p>For example, the <code>popstates</code> SQL View layer can be displayed by invoking the <a href="http://docs.geoserver.org/stable/en/user/webadmin/layerpreview/index.html#layerpreview">Layer Preview</a>. Initially no parameter values are supplied, so the defaults are used and all the states are displayed,</p>
+
+<p>To display all states having more than 20 million inhabitants the following parameter is added to the GetMap request: <code>&amp;viewparams=low:20000000</code></p>
+
+<figure>
+<img src="http://docs.geoserver.org/stable/en/user/_images/sqlview-20millions.png" alt="alt text" title="20 million inhabitants" />
+<figcaption>alt text</figcaption>
+</figure>
+
+<p>To display all states having between 2 and 5 millions inhabitants the view parameters are: <code>&amp;viewparams=low:2000000;high:5000000</code></p>
+
+<figure>
+<img src="http://docs.geoserver.org/stable/en/user/_images/sqlview-2m-5m.png" alt="alt text" title="2 - 5 million inhabitants" />
+<figcaption>alt text</figcaption>
+</figure>
+
+<p>Parameters can be provided for multiple layers by separating each parameter map with a comma:</p>
+
+<p><code>&amp;viewparams=l1p1:v1;l1p2:v2,l2p1:v1;l2p2:v2,...</code></p>
+
+<p>The number of parameter maps must match the number of layers (featuretypes) included in the request.</p>
+
+<h3 id="sheetsuapi">Sheetsu API</h3>
+
+<p>View the <a href="https://sheetsu.com/docs/beta">Sheetsu API docs (beta)</a>.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Dataset</th>
+	<th style="text-align:left;">API URL</th>
+	<th style="text-align:left;">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">Community Facilities</td>
+	<td style="text-align:left;"><a href="https://sheetsu.com/apis/2705ee3b">https://sheetsu.com/apis/2705ee3b</a></td>
+	<td style="text-align:left;">A list of facilities around town.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">Code Violations</td>
+	<td style="text-align:left;"><a href="https://sheetsu.com/apis/41293eb6">https://sheetsu.com/apis/41293eb6</a></td>
+	<td style="text-align:left;">List of code violations filtered by GeoID (block)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">Crime Reports</td>
+	<td style="text-align:left;"><a href="https://sheetsu.com/apis/bb1d8d0d">https://sheetsu.com/apis/bb1d8d0d</a></td>
+	<td style="text-align:left;">Aggregation of crime reports.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">Homeless Survey (2013)</td>
+	<td style="text-align:left;"><a href="https://sheetsu.com/apis/6208b1ef">https://sheetsu.com/apis/6208b1ef</a></td>
+	<td style="text-align:left;">Survey of homelessness in City of Denton for 2013.</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
