@@ -1,0 +1,24 @@
+{
+  "name": "Denton-Dashboard",
+  "homepage": "dashboard.opendenton.com",
+  "authors": [
+    "Open Denton <opendenton@gmail.com>"
+  ],
+  "description": "Create static dashboard for data in Denton.",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "open",
+    "denton",
+    "open",
+    "data"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
