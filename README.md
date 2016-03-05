@@ -63,3 +63,4 @@ Community Facilities | [https://sheetsu.com/apis/2705ee3b](https://sheetsu.com/a
 Code Violations | [https://sheetsu.com/apis/41293eb6](https://sheetsu.com/apis/41293eb6) | List of code violations filtered by GeoID (block)
 Crime Reports | [https://sheetsu.com/apis/bb1d8d0d](https://sheetsu.com/apis/bb1d8d0d) | Aggregation of crime reports.
 Homeless Survey (2013) | [https://sheetsu.com/apis/6208b1ef](https://sheetsu.com/apis/6208b1ef) | Survey of homelessness in City of Denton for 2013.
+Crime Reports (Jan 2013) | [https://sheetsu.com/apis/bef664cf](https://sheetsu.com/apis/bef664cf) | List of crime report data for January 2013
