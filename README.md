@@ -10,7 +10,21 @@ A geo server is being setup to access a postgresql database. Here's a test URL:
 
 <a href="http://gis01.cloudapp.net:8080/geoserver/Private/wms?service=WMS&version=1.1.0&request=GetMap&layers=Private:parcel_unt_data&styles=&bbox=2374140.5,7119699.0,2388426.5,7128551.5&width=768&height=475&srs=EPSG:2276&format=image%2Fjpeg" target="_blank">http://gis01.cloudapp.net:8080/geoserver/Private/wms?service=WMS&version=1.1.0&request=GetMap&layers=Private:parcel_unt_data&styles=&bbox=2374140.5,7119699.0,2388426.5,7128551.5&width=768&height=475&srs=EPSG:2276&format=image%2Fjpeg</a>
 
-###Parameters
+
+### Parameter Breakdown
+Key | Value | Description
+--- | --- | ---------------
+**service** | `WMS` | N/A
+**version** | `1.1.0` | Assumed version of the Geo Server
+**request** | `GetMap` | Type of data being returned
+**layers** | `Private:parcel_unt_data` | Specific to the data hosted on the UNT Geo server.
+**styles** | `bbox=2374140.5,7119699.0,2388426.5,7128551.5` | ¯\_(ツ)_/¯
+**width** | `768` | Width of image in px
+**height** | `475` | Height of image in px
+**srs** | `EPSG:2276` | ¯\_(ツ)_/¯
+**format** | `image%2Fjpeg` | Format of data, HTML encoded.
+
+#### SQL View Parameters
 
 The SQL view parameters are specified by adding the viewparams parameter to the WMS GetMap or the WFS GetFeature request. The viewparams argument is a list of key:value pairs, separated by semicolons:
 
