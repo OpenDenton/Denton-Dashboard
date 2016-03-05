@@ -2,6 +2,11 @@
 # Denton-Dashboard
 Static dashboard for open data in Denton.
 
+* [Geo Server](#geo-server)
+⋅⋅* [Geo Parameters](#parameter-breakdown)
+⋅⋅* [SQL View Parameters](#geo-server)
+* [Sheetsu API](#sheetsu-api)
+
 ## Project Resources
 
 ### <a href="http://docs.geoserver.org/stable/en/user/data/database/sqlview.html" target="_blank">Geo Server</a>
@@ -47,3 +52,12 @@ Parameters can be provided for multiple layers by separating each parameter map 
 `&viewparams=l1p1:v1;l1p2:v2,l2p1:v1;l2p2:v2,...`
 
 The number of parameter maps must match the number of layers (featuretypes) included in the request.
+
+### Sheetsu API
+
+Dataset | API URL | Description
+------- | ------- | ---------------
+Community Facilities | [https://sheetsu.com/apis/2705ee3b](https://sheetsu.com/apis/2705ee3b) | A list of facilities around town.
+Code Violations | [https://sheetsu.com/apis/41293eb6](https://sheetsu.com/apis/41293eb6) | List of code violations filtered by GeoID (block)
+Crime Reports | [https://sheetsu.com/apis/bb1d8d0d](https://sheetsu.com/apis/bb1d8d0d) | Aggregation of crime reports.
+Homeless Survey (2013) | [https://sheetsu.com/apis/6208b1ef](https://sheetsu.com/apis/6208b1ef) | Survey of homelessness in City of Denton for 2013.
