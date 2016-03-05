@@ -3,8 +3,8 @@
 Static dashboard for open data in Denton.
 
 * [Geo Server](#geo-server)
-⋅⋅* [Geo Parameters](#parameter-breakdown)
-⋅⋅* [SQL View Parameters](#geo-server)
+  * [Geo Parameters](#parameter-breakdown)
+  * [SQL View Parameters](#geo-server)
 * [Sheetsu API](#sheetsu-api)
 
 ## Project Resources
