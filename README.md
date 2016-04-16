@@ -26,7 +26,7 @@ Key | Value | Description
 **styles** | `bbox=2374140.5,7119699.0,2388426.5,7128551.5` | ¯\\\_(ツ)\_/¯
 **width** | `768` | Width of image in px
 **height** | `475` | Height of image in px
-**srs** | `EPSG:2276` | ¯\\\_(ツ)\_/¯
+**srs** | `EPSG:2276` | standard projection encoding; 2276, e.g., is Texas State Plane, "<a href="http://spatialreference.org/ref/epsg/nad83-texas-north-central-ftus/">Texas North Central</a>", and would be standard for lots of City of Denton and Denton County GIS data sets, because it's quite precise compared to continental or geographic projections.
 **format** | `image%2Fjpeg` | Format of data, HTML encoded.
 
 #### SQL View Parameters
