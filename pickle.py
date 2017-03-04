@@ -9,4 +9,4 @@ db.set(base64_key, "MORE THINGS")
 things = db.getall()
 
 for thing in things:
-	print thing +":", db.get(thing)
+  print thing +":", db.get(thing)
