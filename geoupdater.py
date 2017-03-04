@@ -2,6 +2,7 @@ import csv
 import pickledb
 import base64
 import json
+import ipdb
 from pygeocoder import Geocoder
 from pygeolib import GeocoderError
 
@@ -16,8 +17,9 @@ def getAddress(address, db):
   value = db.get(base64_key)
   
   if (value is not None):
-    json_address = json.loads(value)
-    print "value exists: ", json_address['postal_code']
+    data = json.loads(value)
+    json_address = data['data'][0]
+    print "value exists: ", json_address['formatted_address']
     return json_address
   else:
     try:
@@ -26,10 +28,10 @@ def getAddress(address, db):
       json_address = json.dumps(vars(address))
       # store in db by base64 key
       db.set(base64_key, json_address)
-      json_address = json.loads(json_address)
-      
+      data = json.loads(json_address)
+      json_address = data['data'][0]
       print "New address added:", json_address['formatted_address']
-      return address
+      return json_address
     except GeocoderError:
       print "The address entered could not be geocoded"
       db.set(base64_key, None)
@@ -58,12 +60,13 @@ with open('trakitciscodeviol.csv','r') as csvinput:
       address = getAddress(street, db)
       if (address is not None):
         print "Address: ", address
+        # ipdb.set_trace()
 
         # append new data to row
-        row.append(address['postal_code'])
+        row.append(address['address_components'][6]['short_name'])
         row.append(address['formatted_address'])
-        row.append(address['coordinates'][0])
-        row.append(address['coordinates'][1])
+        row.append(address['geometry']['location']['lat'])
+        row.append(address['geometry']['location']['lng'])
 
         # add row to new csv
         all.append(row)
