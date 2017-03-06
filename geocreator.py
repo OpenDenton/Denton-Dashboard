@@ -6,8 +6,6 @@ from pprint import pprint
 from pygeocoder import Geocoder
 from pygeolib import GeocoderError
 
-# GOOGLE_API_KEY = "AIzaSyALz8wDmVs2Fzx4gdMJtAlPWf_nUQjl5u8"
-
 def getAddress(address, db):
   global cached_addresses
   # clean whitespace first
@@ -26,10 +24,7 @@ def getAddress(address, db):
 
   else:
     try:
-      try:
-        address = Geocoder(GOOGLE_API_KEY).geocode(address + ", Denton, Texas")
-      except:
-        address = Geocoder.geocode(address + ", Denton, Texas")
+      address = Geocoder('AIzaSyALz8wDmVs2Fzx4gdMJtAlPWf_nUQjl5u8').geocode(address + ", Denton, Texas")
       
       # jsonify address object
       json_address = {}
@@ -56,35 +51,36 @@ def getAddress(address, db):
 db = pickledb.load('codeviolations.db', False)
 cached_addresses = 0
 
-with open('trakitciscodeviol-geo.csv','r') as csvinput:
-  with open('trakitciscodeviol-geo-1.csv', 'w') as csvoutput:
+with open('trakitciscodeviol.csv','r') as csvinput:
+  with open('trakitciscodeviol-geo.csv', 'w') as csvoutput:
     writer = csv.writer(csvoutput, lineterminator='\n')
     reader = csv.reader(csvinput)
 
     row = next(reader)
+    row.extend(['postal_code', 'formatted_address', 'latitude', 'longitude'])
+
+    pprint(row)
     writer.writerow(row)
 
     count = 0
     for row in reader:
       street = row[3]
-      zip_check = row[4]
-      if (zip_check == 'no_zip' or zip_check == ""):
-        address = getAddress(street, db)
+      address = getAddress(street, db)
 
-        if (address is not None):
-          print "Address: ", address
-          pprint(address)
+      if (address is not None):
+        print "Address: ", address
+        pprint(address)
 
-          address = json.loads(address)
+        address = json.loads(address)
 
-          pprint(address)
-          # append new data to row
-          row.extend([address['postal_code'], address['formatted_address'], address['latitude'], address['longitude']])
+        pprint(address)
+        # append new data to row
+        row.extend([address['postal_code'], address['formatted_address'], address['latitude'], address['longitude']])
 
-        else:
-          # add empty values
-          row.extend(['no_zip', 'no_format', 'no_lat', 'no_lon'])
-          # all.append(row)
+      else:
+        # add empty values
+        row.extend(['no_zip', 'no_format', 'no_lat', 'no_lon'])
+        # all.append(row)
 
       writer.writerow(row)
       # test for thing
