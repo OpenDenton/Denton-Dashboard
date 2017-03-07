@@ -6,7 +6,7 @@ from pprint import pprint
 from pygeocoder import Geocoder
 from pygeolib import GeocoderError
 
-# GOOGLE_API_KEY = "AIzaSyALz8wDmVs2Fzx4gdMJtAlPWf_nUQjl5u8"
+GOOGLE_API_KEY = "AIzaSyALz8wDmVs2Fzx4gdMJtAlPWf_nUQjl5u8"
 
 def getAddress(address, db):
   global cached_addresses
@@ -56,8 +56,8 @@ def getAddress(address, db):
 db = pickledb.load('codeviolations.db', False)
 cached_addresses = 0
 
-with open('trakitciscodeviol-geo.csv','r') as csvinput:
-  with open('trakitciscodeviol-geo-1.csv', 'w') as csvoutput:
+with open('trakitciscodeviol-geo-1.csv','r') as csvinput:
+  with open('trakitciscodeviol-geo-2.csv', 'w') as csvoutput:
     writer = csv.writer(csvoutput, lineterminator='\n')
     reader = csv.reader(csvinput)
 
@@ -67,8 +67,8 @@ with open('trakitciscodeviol-geo.csv','r') as csvinput:
     count = 0
     for row in reader:
       street = row[3]
-      zip_check = row[4]
-      if (zip_check == 'no_zip' or zip_check == ""):
+      add_check = row[5]
+      if (add_check == 'no_format' or add_check == ""):
         address = getAddress(street, db)
 
         if (address is not None):
@@ -79,12 +79,21 @@ with open('trakitciscodeviol-geo.csv','r') as csvinput:
 
           pprint(address)
           # append new data to row
-          row.extend([address['postal_code'], address['formatted_address'], address['latitude'], address['longitude']])
+          row[4] = address['postal_code']
+          row[5] = address['formatted_address']
+          row[6] = address['latitude']
+          row[7] = address['longitude']
 
         else:
           # add empty values
-          row.extend(['no_zip', 'no_format', 'no_lat', 'no_lon'])
+          row[4] = 'no_zip'
+          row[5] = 'no_format'
+          row[6] = 'no_lat'
+          row[7] = 'no_lon'
+
           # all.append(row)
+      else:
+        print "Skipped:", add_check
 
       writer.writerow(row)
       # test for thing
